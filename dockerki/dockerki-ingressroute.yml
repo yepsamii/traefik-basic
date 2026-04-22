@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dockerki
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`docker.ki`)
+      kind: Rule
+      services:
+        - name: dockerki
+          port: 80
+  tls:
+    secretName: app-tls
