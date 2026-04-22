@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: voting-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vote.samii`)
+      kind: Rule
+      services:
+        - name: voting-app
+          port: 80
+  tls:
+    secretName: app-tls
